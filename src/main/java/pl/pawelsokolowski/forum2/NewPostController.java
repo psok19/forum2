@@ -12,12 +12,12 @@ public class NewPostController {
     private PostRepository postRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewPost(@RequestParam String topic, @RequestParam String text){
+    public @ResponseBody String addNewPost(@RequestParam String topic, @RequestParam String text){ //todo issue1
         Post newPost = new Post();
         newPost.setTopic(topic);
         newPost.setText(text);
 
         postRepository.save(newPost);
-        return "Saved!";
+        return "Saved!";  //todo issue1
     }
 }

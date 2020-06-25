@@ -44,4 +44,18 @@ public class HttpRequestTest {
         //then
         Assertions.assertTrue(responseEntity.getBody().contains("Saved"));
     }
+
+    @Test
+    public void shouldReturnTopicsListPage(){
+        //given
+
+        //when
+        Object response = this.restTemplate.getForObject("http://localhost:"+port, String.class);
+        String responseString = (String)response;
+
+        //then
+        Assertions.assertTrue(responseString.contains("<title>Forum - topics list</title>"));
+
+
+    }
 }

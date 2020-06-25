@@ -5,6 +5,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -19,8 +20,8 @@ public class PostRepositoryTest {
     @BeforeAll
     public static void initialize(){
         testPost = new Post();
-        testPost.setTopic("Test.");
-        testPost.setText("Test text.");
+        testPost.setTopic("Test44.");
+        testPost.setText("Test text44.");
     }
 
 
@@ -40,7 +41,7 @@ public class PostRepositoryTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     public void shouldDeleteItem(){
         postRepository.delete(testPost);
         Optional<Post> item = postRepository.findById(testPost.getId());
@@ -49,13 +50,19 @@ public class PostRepositoryTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void shouldNotFindItem(){
         Optional<Post> item = postRepository.findById(testPost.getId());
 
         Assertions.assertFalse(item.isPresent());
     }
 
+    @Test
+    @Order(3)
+    public void shouldReturnTopic(){
+        List<String> topics = postRepository.findDistinctTopic();
 
+        Assertions.assertTrue(topics.contains(testPost.getTopic()));
+    }
 
 }
