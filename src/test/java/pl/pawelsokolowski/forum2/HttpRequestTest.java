@@ -46,16 +46,44 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void shouldReturnTopicsListPage(){
+    public void shouldReturnTopicsListPage() {
         //given
 
         //when
-        Object response = this.restTemplate.getForObject("http://localhost:"+port, String.class);
-        String responseString = (String)response;
+        Object response = this.restTemplate.getForObject("http://localhost:" + port, String.class);
+        String responseString = (String) response;
 
         //then
         Assertions.assertTrue(responseString.contains("<title>Forum - topics list</title>"));
 
 
+    }
+
+    @Test
+    public void shouldReturnNewTopicView() {
+        //given
+        String expectedResponseContent = "<title>Forum - New Topic</title>";
+
+        //when
+        String response = this.restTemplate.getForObject("http://localhost:" + port + "/new_topic.html", String.class);
+
+        //then
+        Assertions.assertTrue(response.contains(expectedResponseContent));
+
+    }
+
+    @Test
+    public void shouldReturn_Created_AsResponse() {
+        //given
+        String expectedResponse = "Created!";
+        MultiValueMap<String, String> args = new LinkedMultiValueMap();
+        args.add("topic", "Test.");
+        args.add("first_post", "My first post test.");
+
+        //when
+        String response = this.restTemplate.postForObject("http://localhost:" + port + "/topic/add", args, String.class);
+
+        //then
+        Assertions.assertEquals(expectedResponse, response);
     }
 }

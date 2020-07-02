@@ -6,13 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Post {
-
+public class Topic {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //todo zmienić GenerationType na Table
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
+
     private String topic;
-    private String text;
 
     public Integer getId() {
         return id;
@@ -28,13 +27,5 @@ public class Post {
 
     public void setTopic(String topic) {
         this.topic = topic;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 }
