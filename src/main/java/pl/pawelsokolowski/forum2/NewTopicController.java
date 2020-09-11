@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class NewTopicController {
@@ -15,15 +14,15 @@ public class NewTopicController {
     private PostRepository postRepository;
 
     @PostMapping("/topic/add")
-    public @ResponseBody String createNewTopic(@RequestParam String topic, @RequestParam("first_post") String post){
+    public String createNewTopic(@RequestParam String topic, @RequestParam("first_post") String post){
         Topic newTopic = new Topic();
         newTopic.setTopic(topic);
         Post newPost = new Post();
-        newPost.setTopic(topic);
+        newPost.setTopic(newTopic);
         newPost.setText(post);
         topicRepository.save(newTopic);
         postRepository.save(newPost);
-        return "Created!";
+        return "topic_list";
     }
 
 }

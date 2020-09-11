@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PostRepository extends CrudRepository<Post, Integer> {
 
-    @Query("SELECT DISTINCT topic FROM Post")
-    List<String> findDistinctTopic();
+//    @Query("SELECT DISTINCT topic FROM Post")
+//    List<String> findDistinctTopic();
 
 }

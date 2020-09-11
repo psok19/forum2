@@ -75,7 +75,7 @@ public class HttpRequestTest {
     @Test
     public void shouldReturn_Created_AsResponse() {
         //given
-        String expectedResponse = "Created!";
+        String expectedResponse = "Forum - topics list";
         MultiValueMap<String, String> args = new LinkedMultiValueMap();
         args.add("topic", "Test.");
         args.add("first_post", "My first post test.");
@@ -84,6 +84,6 @@ public class HttpRequestTest {
         String response = this.restTemplate.postForObject("http://localhost:" + port + "/topic/add", args, String.class);
 
         //then
-        Assertions.assertEquals(expectedResponse, response);
+        Assertions.assertTrue(response.contains(expectedResponse));
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Controller
 public class TopicListController {
     @Autowired
-    private PostRepository postRepository;
+    private TopicRepository topicRepository;
 
     @GetMapping("/")
     public String getTopicList() {
@@ -21,7 +21,7 @@ public class TopicListController {
     @ModelAttribute("topics")
     private List<String> getRawTopics() {
 
-        return postRepository.findDistinctTopic();
+        return topicRepository.findAllTopicNames();
     }
 
 }

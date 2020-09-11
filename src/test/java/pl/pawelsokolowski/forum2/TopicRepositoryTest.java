@@ -28,8 +28,9 @@ public class TopicRepositoryTest {
     @Test
     @Order(1)
     public void shouldIdBeNotNull() {
+        topicRepository.deleteAll();
         topicRepository.save(testTopic1);
-
+        System.out.println(testTopic1.getId().toString());
         Assertions.assertNotNull(testTopic1.getId());
     }
 
@@ -37,25 +38,12 @@ public class TopicRepositoryTest {
     @Order(2)
     public void shouldFindItem() {
         Optional<Topic> item = topicRepository.findById(testTopic1.getId());
+        System.out.println(testTopic1.getId().toString());
         Assertions.assertTrue(item.isPresent());
     }
 
     @Test
     @Order(3)
-    public void shouldIdBeEquals_1(){
-        //given
-        int expectedId = 1;
-        int actualId = 0;
-
-        //when
-        actualId = testTopic1.getId();
-
-        //then
-        Assertions.assertEquals(expectedId, actualId);
-    }
-
-    @Test
-    @Order(4)
     public void shouldFind2Items(){
         //given
         int sizeActual = 0;

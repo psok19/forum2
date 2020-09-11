@@ -1,24 +1,27 @@
 package pl.pawelsokolowski.forum2;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Topic {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="topic_id")
+    private Integer topicId;
 
     private String topic;
 
+    @OneToMany(mappedBy = "topic")
+    private Set<Post> posts = new HashSet<>();
+
     public Integer getId() {
-        return id;
+        return topicId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.topicId = id;
     }
 
     public String getTopic() {

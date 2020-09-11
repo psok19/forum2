@@ -1,32 +1,32 @@
 package pl.pawelsokolowski.forum2;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //todo zmienić GenerationType na Table
-    private Integer id;
-    private String topic;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
+    private Integer postId;
+    @ManyToOne
+    @JoinColumn(name= "topic_id")
+    private Topic topic;
     private String text;
 
-    public Integer getId() {
-        return id;
+    public Integer getPostId() {
+        return postId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
-    public String getTopic() {
+    public Topic getTopic() {
         return topic;
     }
 
-    public void setTopic(String topic) {
+    public void setTopic(Topic topic) {
         this.topic = topic;
     }
 
