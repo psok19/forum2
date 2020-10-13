@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
 @SpringBootTest(classes = Forum2Application.class)
 public class PostRepositoryTest {
@@ -20,7 +21,7 @@ public class PostRepositoryTest {
     private static Topic testTopic;
 
     @BeforeAll
-    public static void initialize(){
+    public void initialize(){
         testPost = new Post();
         testTopic = new Topic();
 
@@ -62,6 +63,12 @@ public class PostRepositoryTest {
         Optional<Post> item = postRepository.findById(testPost.getPostId());
 
         Assertions.assertFalse(item.isPresent());
+    }
+
+    @AfterAll
+    public void clear(){
+        postRepository.deleteAll();
+        topicRepository.deleteAll();
     }
     
 }

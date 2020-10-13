@@ -7,17 +7,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
 @SpringBootTest(classes = Forum2Application.class)
 public class TopicRepositoryTest {
     @Autowired
     private TopicRepository topicRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     private static Topic testTopic1;
     private static Topic testTopic2;
 
     @BeforeAll
-    public static void initialize() {
+    public void initialize() {
         testTopic1 = new Topic();
         testTopic1.setTopic("Test Topic 1.");
         testTopic2 = new Topic();
@@ -78,6 +81,12 @@ public class TopicRepositoryTest {
         Optional<Topic> item = topicRepository.findById(testTopic1.getId());
 
         Assertions.assertFalse(item.isPresent());
+    }
+
+    @AfterAll
+    public void clear(){
+        postRepository.deleteAll();
+        topicRepository.deleteAll();
     }
 
 }

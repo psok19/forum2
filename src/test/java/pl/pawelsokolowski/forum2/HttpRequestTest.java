@@ -1,5 +1,6 @@
 package pl.pawelsokolowski.forum2;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,4 +87,6 @@ public class HttpRequestTest {
         //then
         Assertions.assertTrue(response.contains(expectedResponse));
     }
+
+
 }
