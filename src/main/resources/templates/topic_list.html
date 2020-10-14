@@ -12,7 +12,7 @@
 <div style="margin:auto; width: 80%;">
     <table style="width:100%" >
         <tr th:each="topic : ${topics}">
-            <td><a th:href="@{'/topic/' + ${topic}}" th:text="${topic}">text</a></td>
+            <td><a th:href="@{'/topic/' + ${topic.getId()}}" th:text="${topic.getTopic()}">text</a></td>
         </tr>
     </table>
 </div>
