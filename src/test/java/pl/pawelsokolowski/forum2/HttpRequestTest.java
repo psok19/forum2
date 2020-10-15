@@ -27,34 +27,21 @@ public class HttpRequestTest {
     private TestRestTemplate restTemplate;
 
 
-    @Test
-    public void shouldReturnSaved() {
-        //given
-        URI uri = URI.create("http://localhost:" + port + "/add");
-        MultiValueMap<String, String> post = new LinkedMultiValueMap<>();
-        post.add("topic", "Test.");
-        post.add("text", "Test text.");
-
-        //when
-        ResponseEntity<String> responseEntity = this.restTemplate.postForEntity(uri, post, String.class);
-
-        //then
-        Assertions.assertTrue(responseEntity.getBody().contains("Saved"));
-    }
-
 //    @Test
-//    public void shouldReturnTopicsListPage() {
+//    public void shouldReturnSaved() {
 //        //given
+//        URI uri = URI.create("http://localhost:" + port + "/add");
+//        MultiValueMap<String, String> post = new LinkedMultiValueMap<>();
+//        post.add("topic", "Test.");
+//        post.add("text", "Test text.");
 //
 //        //when
-//        Object response = this.restTemplate.getForObject("http://localhost:" + port, String.class);
-//        String responseString = (String) response;
+//        ResponseEntity<String> responseEntity = this.restTemplate.postForEntity(uri, post, String.class);
 //
 //        //then
-//        Assertions.assertTrue(responseString.contains("<title>Forum - topics list</title>"));
-//
-//
+//        Assertions.assertTrue(responseEntity.getBody().contains("Saved"));
 //    }
+
 
 //    @Test
 //    public void shouldReturnNewTopicView() {
