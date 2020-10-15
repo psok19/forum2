@@ -28,25 +28,19 @@ public class HttpRequestTest {
 
 
     @Test
-    public void shouldReturnNewPostPage() {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/new_post.html", String.class))
-                .contains("<title>Forum - New Post</title>");
-    }
+    public void shouldReturnSaved() {
+        //given
+        URI uri = URI.create("http://localhost:" + port + "/add");
+        MultiValueMap<String, String> post = new LinkedMultiValueMap<>();
+        post.add("topic", "Test.");
+        post.add("text", "Test text.");
 
-//    @Test
-//    public void shouldReturnSaved() {
-//        //given
-//        URI uri = URI.create("http://localhost:" + port + "/add");
-//        MultiValueMap<String, String> post = new LinkedMultiValueMap<>();
-//        post.add("topic", "Test.");
-//        post.add("text", "Test text.");
-//
-//        //when
-//        ResponseEntity<String> responseEntity = this.restTemplate.postForEntity(uri, post, String.class);
-//
-//        //then
-//        Assertions.assertTrue(responseEntity.getBody().contains("Saved"));
-//    }
+        //when
+        ResponseEntity<String> responseEntity = this.restTemplate.postForEntity(uri, post, String.class);
+
+        //then
+        Assertions.assertTrue(responseEntity.getBody().contains("Saved"));
+    }
 
 //    @Test
 //    public void shouldReturnTopicsListPage() {
@@ -75,20 +69,6 @@ public class HttpRequestTest {
 //
 //    }
 
-//    @Test
-//    public void shouldReturn_Created_AsResponse() {
-//        //given
-//        String expectedResponse = "Forum - topics list";
-//        MultiValueMap<String, String> args = new LinkedMultiValueMap();
-//        args.add("topic", "Test.");
-//        args.add("first_post", "My first post test.");
-//
-//        //when
-//        String response = this.restTemplate.postForObject("http://localhost:" + port + "/topic/add", args, String.class);
-//
-//        //then
-//        Assertions.assertTrue(response.contains(expectedResponse));
-//    }
 
 
 }
