@@ -2,21 +2,21 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title th:text="@{'Topic - ' + ${posts[0].getTopic().getTopic()}}">topic</title>
+    <title th:text="@{'Topic - ' + ${posts[0].getTopic().getTopic()}}">text</title>
 </head>
 <body>
-<h1 style="text-align: center;" th:text="${posts[0].getTopic().getTopic()}">topic</h1></br>
+<h1 style="text-align: center;" th:text="${posts[0].getTopic().getTopic()}">text</h1></br>
 </div>
 <div style="margin:auto; width: 80%;">
-    <table style="width:100%" >
+    <table style="width:100%">
         <tr th:each="post : ${posts}">
             <td><p th:text="${post.getText()}">post</p></td>
         </tr>
     </table>
 </div>
 <div style="margin:auto; width: 80%;">
-    <form th:action="@{'/topic/' + ${posts[0].getTopic().getId()} + '/add_post'" method="post" >
-        <textarea name="new_post" rows="10" placeholder="New Post." style="width: 100%; resize: none;" ></textarea></br>
+    <form th:action="@{'/topic/' + ${posts[0].getTopic().getId()} + '/add_post'}" method="post">
+        <textarea name="new_post" rows="10" placeholder="New Post." style="width: 100%; resize: none;"></textarea></br>
         <input type="submit" value="Add Post"></br>
     </form>
 </div>
